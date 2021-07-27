@@ -13,34 +13,39 @@ const useStyles = makeStyles({
         left: "50%",
         transform: "translate(-50%, -50%)",
         backgroundColor: "white",
-        width: "80%"
+        width: "80%",
+        opacity: "0",
     }
 })
 
 export default function Home (props) {
     const header = React.createRef();
+    const table = React.createRef();
     const classes = useStyles();
     const [rows, setRows] = useState([])
     
     useEffect(() => {
         gsap.to(header.current, {color: "#7fabfc", duration: 1.5, scale: 1.1, y: "2rem"})
-    }, [header])
+        gsap.to(table.current, { duration: 2, scale: 1.05, rotate: 360, backgroundColor: "#eb77b7", opacity: 1 })
+
+    }, [header, table])
 
     return (
         <div className="container" style={{paddingBottom: "6rem"}}>
             <h1 ref={header}>Chore Chart</h1>
             
-            <TableContainer component={Paper} className={classes.table}>
+            <TableContainer component={Paper} className={classes.table} ref={table}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Sunday</TableCell>
-                            <TableCell>Monday</TableCell>
-                            <TableCell>Tuesday</TableCell>
-                            <TableCell>Wednesday</TableCell>
-                            <TableCell>Thursday</TableCell>
-                            <TableCell>Friday</TableCell>
-                            <TableCell>Saturday</TableCell>
+                            <TableCell align="left">Chore</TableCell>
+                            <TableCell align="center">Sunday</TableCell>
+                            <TableCell align="center">Monday</TableCell>
+                            <TableCell align="center">Tuesday</TableCell>
+                            <TableCell align="center">Wednesday</TableCell>
+                            <TableCell align="center">Thursday</TableCell>
+                            <TableCell align="center">Friday</TableCell>
+                            <TableCell align="center">Saturday</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
