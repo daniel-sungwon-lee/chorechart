@@ -15,14 +15,32 @@ const useStyles = makeStyles({
         backgroundColor: "white",
         width: "80%",
         opacity: "0",
+    },
+    headerRow: {
+        fontSize: "18px",
+        color: "white"
     }
 })
+
+const createRow = (chore, name, name2, name3, name4, name5, name6, name7) => {
+    return (
+        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableCell component="th" scope="row">{chore}</TableCell>
+            <TableCell align="center">{name}</TableCell>
+            <TableCell align="center">{name2}</TableCell>
+            <TableCell align="center">{name3}</TableCell>
+            <TableCell align="center">{name4}</TableCell>
+            <TableCell align="center">{name5}</TableCell>
+            <TableCell align="center">{name6}</TableCell>
+            <TableCell align="center">{name7}</TableCell>
+        </TableRow>
+    )
+}
 
 export default function Home (props) {
     const header = React.createRef();
     const table = React.createRef();
     const classes = useStyles();
-    const [rows, setRows] = useState([])
     
     useEffect(() => {
         gsap.to(header.current, {color: "#7fabfc", duration: 1.5, scale: 1.1, y: "2rem"})
@@ -38,31 +56,27 @@ export default function Home (props) {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left">Chore</TableCell>
-                            <TableCell align="center">Sunday</TableCell>
-                            <TableCell align="center">Monday</TableCell>
-                            <TableCell align="center">Tuesday</TableCell>
-                            <TableCell align="center">Wednesday</TableCell>
-                            <TableCell align="center">Thursday</TableCell>
-                            <TableCell align="center">Friday</TableCell>
-                            <TableCell align="center">Saturday</TableCell>
+                            <TableCell align="left" className={classes.headerRow}>Chore</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Sunday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Monday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Tuesday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Wednesday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Thursday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Friday</TableCell>
+                            <TableCell align="center" className={classes.headerRow}>Saturday</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
-                            </TableRow>
-                        ))}
+                        {
+                            createRow(
+                                "Vaccum", "Daniel", "Joanne", "Moses", "Esther", "Daniel", "Joanne", "Moses"
+                            )
+                        }
+                        {
+                            createRow(
+                                "Bathroom", "Joanne", "Moses", "Esther", "Daniel", "Joanne", "Moses", "Esther"
+                            )
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
